@@ -1,0 +1,88 @@
+<h1 class="mb-3">Register</h1>
+<div *ngIf="step == 1">
+  <div class="form-group mb-2">
+    <label>Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Enter email"
+      [(ngModel)]="email"
+    />
+  </div>
+  <div class="form-group mb-2">
+    <label>ID</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter your ID"
+      [(ngModel)]="userId"
+    />
+  </div>
+  <div class="form-group mb-2">
+    <label>Password</label>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      [(ngModel)]="password"
+    />
+  </div>
+  <div class="form-group mb-2">
+    <label>Re Password</label>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      [(ngModel)]="repassword"
+    />
+  </div>
+  <div class="text-center mt-4">
+    <button
+      class="btn btn-warning btn-lg rounded-circle m-auto"
+      (click)="checkStep1()"
+    >
+      <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+<div *ngIf="step == 2">
+  <div class="form-group mb-2">
+    <label>City</label>
+    <select class="form-control" [(ngModel)]="city">
+      <option *ngFor="let c of cities" [ngValue]="c">{{ c }}</option>
+    </select>
+  </div>
+  <div class="form-group mb-2">
+    <label>Street</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Street"
+      [(ngModel)]="street"
+    />
+  </div>
+  <div class="form-group mb-2">
+    <label>Full Name</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Full Name"
+      [(ngModel)]="fullName"
+    />
+  </div>
+  <div class="text-center mt-4">
+    <button
+      class="btn btn-warning btn-lg rounded-circle m-auto"
+      (click)="step = 1"
+    >
+      <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+    </button>
+  </div>
+  <button class="btn btn-primary mt-3" (click)="registerUser()">
+    Register
+  </button>
+</div>
+
+<div class="alert alert-danger mt-4" role="alert" *ngIf="hasError">
+  {{ errorText }}
+</div>

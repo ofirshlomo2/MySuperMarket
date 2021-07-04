@@ -1,0 +1,28 @@
+<h1 class="page-header">Admin</h1>
+<a [routerLink]="['/create-product']" class="btn btn-primary my-3"
+  >Add new product</a
+>
+<div class="container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products; let i = index">
+        <th scope="row">{{ i }}</th>
+        <td>{{ p.name }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.price }}</td>
+        <td>
+          <img [src]="p.image" width="50" height="50" alt="" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

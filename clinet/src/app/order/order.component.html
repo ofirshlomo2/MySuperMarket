@@ -1,0 +1,39 @@
+<h3 class="page-header">Shipping details</h3>
+<div class="form-group mb-2">
+
+  <label>City</label>
+  <select class="form-control" [(ngModel)]="city">
+    <option *ngFor="let c of cities" [ngValue]="c">{{ c }}</option>
+  </select>
+</div>
+<div class="form-group mb-2">
+  <label>Street</label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Street"
+    [(ngModel)]="street"/>
+</div>
+<div class="form-group mb-2">
+  <label>Shipping date</label>
+  <input type="text"
+         [(bsValue)]="shippingDate"
+         (bsValueChange)="onDateChange()"
+         placeholder="Datepicker"
+         class="form-control"
+         bsDatepicker>
+
+</div>
+
+<h3 class="page-header">Shipping details</h3>
+<div class="form-group mb-2">
+  <label>credit card</label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Credit card"
+    [(ngModel)]="creditCard"/>
+</div>
+
+<button class="btn btn-primary" (click)="createOrder()" >Create</button>
+
