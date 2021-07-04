@@ -46,7 +46,7 @@
             />
           </div>
 
-          <!--       <div class="row">
+          <!--  <div class="row">
             <div
               *ngFor="
                 let p of filteredProducts | filter: searchText:'name';
@@ -75,40 +75,41 @@
             </div>
           </div> -->
           <div class="row">
-          <div class="container">
-            <div
-              class="card"
-              *ngFor="
-                let p of filteredProducts | filter: searchText:'name';
-                let i = index
-              "
-            >
-              <div class="card-header">
-                <img src="{{ p.image }}" alt="{{ p.name }}" />
-              </div>
-              <div class="card-body">
-                <h4>
-                  {{ p.name }}
-                </h4>
-                <span class="tag tag-teal"></span>
-                <h3>{{ p.price }}$</h3>
-                <a
-                  class="btn btn-warning"
-                  (click)="openModal(template); selectedProduct = p"
-                  *ngIf="user"
-                  >Purchase</a
-                >
+            <div class="container">
+              <div
+                class="card"
+                *ngFor="
+                  let p of filteredProducts | filter: searchText:'name';
+                  let i = index
+                "
+              >
+                <div class="card-header">
+                  <img src="{{ p.image }}" alt="{{ p.name }}" />
+                </div>
+                <div class="card-body">
+                  <h4>
+                    {{ p.name }}
+                  </h4>
+                  <span class="tag tag-teal"></span>
+                  <h3>{{ p.price }}$</h3>
+                  <a
+                    class="btn btn-warning"
+                    (click)="openModal(template); selectedProduct = p"
+                    *ngIf="user"
+                    >Purchase</a
+                  >
+                </div>
               </div>
             </div>
-        </div>
           </div>
-
-        <div *ngIf="isCheckout">
-          <app-order></app-order>
         </div>
+      </div>
+      <div *ngIf="isCheckout">
+        <app-order></app-order>
       </div>
     </div>
   </div>
+
   <ng-template #template>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Buy {{ selectedProduct?.name }}</h4>
