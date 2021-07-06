@@ -1,36 +1,11 @@
-<!-- <div class="row" *ngIf="cart">
-  <div class="col-sm-12">
-    <div class="d-flex flex-row align-items-center" (click)="backToShop()"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Continue Shopping</span></div>
-    <hr>
-    <h1 class="d-flex align-items-center">
-    </h1>
-      <span>My cart</span>
-    <div class="d-flex justify-content-center flex-column">
-      <b for="">Search in cart</b>
-      <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchText">
-    </div>
-  </div>
-  <div class="col-sm-12" *ngFor="let p of cart.products | keyvalue; let i=index;">
-    <img [src]="p.value.product.image" style="width:70px;" alt=""> - <b>{{p.value.product.name}}</b>
-    ({{p.value.quantity}}) |
-    <a *ngIf="!isCheckOut" class="btn btn-danger" (click)="removeProduct(p.value.product)">X</a>
-  </div>
-  <div class="col-sm-12">
-    <b>Total: {{cart.total | currency}}</b>
-  </div>
-
-  <div>
-    <a class="btn btn-warning" *ngIf="!isCheckOut" (click)="checkoutClick()">Checkout</a>
-  </div>
-</div> -->
-
 <div class="container mt-5 p-3 rounded cart" *ngIf="cart">
   <div class="row no-gutters">
     <div class="col-md-8">
       <div class="product-details mr-2">
         <div class="d-flex flex-row align-items-center" (click)="backToShop()">
-          <i class="fa fa-long-arrow-left"></i
-          ><span class="ml-2">Continue Shopping</span>
+          <div *ngIf="isCheckOut">
+            <i class="fa fa-long-arrow-left"></i><span class="ml-2">Continue Shopping</span>
+          </div>
         </div>
         <hr>
         <h6 class="mb-0">Shopping cart</h6>
@@ -41,38 +16,31 @@
           </div>
         </div>
       </div>
-
-      <div
-        class="
-          d-flex
-          justify-content-between
-          align-items-center
-          mt-3
-          p-2
-          items
-          rounded
-        "
-        *ngFor="let p of cart.products | keyvalue; let i = index"
-      >
+      <div>
+        <input type="text" class="form-control" [(ngModel)]="searchTerm">
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded"
+           *ngFor="let p of cart.products | keyvalue | highlight: searchTerm; let i = index">
         <div class="d-flex flex-row">
-          <img class="rounded" [src]="p.value.product.image" width="70" />
+          <img class="rounded" [src]="p.value.product.image" width="70"/>
           <div class="ml-2">
-            <span class="font-weight-bold d-block">{{p.value.product.name}}</span><span class="spec">Qountity</span>
+            <span class="font-weight-bold d-block" [innerHTML]="p.value.product.name"></span><span
+            class="spec">Qountity</span>
           </div>
         </div>
         <div class="d-flex flex-row align-items-center">
-          <span class="d-block">({{ p.value.quantity }})</span><span class="d-block ml-2 font-weight-bold">{{p.value.product.price}}$</span
-          ><i
-            class="fa fa-trash-o ml-2 text-black-50 "
-            *ngIf="!isCheckOut"
-            (click)="removeProduct(p.value.product)"
+          <span class="d-block">({{ p.value.quantity }})</span><span
+          class="d-block ml-2 font-weight-bold">{{p.value.product.price}}$</span>
+          <i class="fa fa-trash-o ml-2 text-black-50 "
+             *ngIf="!isCheckOut"
+             (click)="removeProduct(p.value.product)"
           ></i>
         </div>
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <hr class="line" />
+    <hr class="line"/>
     <div class="d-flex justify-content-between information">
       <span>Total</span><span>{{ cart.total | currency }}</span>
     </div>

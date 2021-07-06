@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   selectedProduct;
   modalRef: BsModalRef;
   isCheckout = false;
- 
+
 
   constructor(private productService: ProductService, private authService: AuthService, private modalService: BsModalService) {
   }

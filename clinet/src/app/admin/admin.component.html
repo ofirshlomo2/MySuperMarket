@@ -17,7 +17,7 @@
       <tr *ngFor="let p of products; let i = index">
         <th scope="row">{{ i }}</th>
         <td>{{ p.name }}</td>
-        <td>{{ p.category }}</td>
+        <td>{{ p.category.name }}</td>
         <td>{{ p.price }}</td>
         <td>
           <img [src]="p.image" width="50" height="50" alt="" />

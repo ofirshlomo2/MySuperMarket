@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
     products: {},
     total: 0
   };
+  searchTerm = '';
 
 
   constructor(private authService: AuthService) {
@@ -23,7 +24,9 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cart = this.authService.getCart();
+    //shallow copy
+    //this.cart=Object.assign({},this.authService.getCart()); => no copy functions
+    this.cart = JSON.parse(JSON.stringify(this.authService.getCart()));
   }
 
   removeProduct(product) {

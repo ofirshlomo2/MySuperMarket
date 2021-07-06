@@ -16,6 +16,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {OrderComponent} from './order/order.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import { HighlightPipe } from './highlight.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
     CreateProductComponent,
     CartComponent,
     FilterPipe,
-    OrderComponent
+    OrderComponent,
+    HighlightPipe
   ],
   imports: [
     FormsModule,
