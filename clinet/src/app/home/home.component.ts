@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.authService.getUser();
     this.productService.getAll().subscribe((products: any) => {
-      this.products = products;
+      this.products = JSON.parse(JSON.stringify(products));
       this.filteredProducts = products;
     });
     this.productService.getCategories().subscribe((categories: any) => this.categories = categories);

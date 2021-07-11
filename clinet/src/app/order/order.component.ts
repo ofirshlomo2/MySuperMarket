@@ -4,6 +4,7 @@ import {AuthService} from '../auth.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 declare var window: any;
+declare var CreateObject: any;
 
 @Component({
   selector: 'app-order',
@@ -20,6 +21,7 @@ export class OrderComponent implements OnInit {
   user;
   modalRef: BsModalRef;
   private populatedOrder;
+  textFileLink = '';
 
   constructor(private orderService: OrdersService, private authService: AuthService, private modalService: BsModalService) {
 
@@ -63,27 +65,23 @@ export class OrderComponent implements OnInit {
   }
 
   generateTextFile() {
-
     const cart = this.authService.getCart();
-    let fileJson = {products: []};
+    let text = '';
     this.populatedOrder.products.forEach(p => {
-      fileJson.products.push(p.name);
+      text += p.name += '\r\n';
     });
-    fileJson.products.push(cart.total);
+    text += cart.total += '\r\n';
 
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', 'order.txt');
 
-    var filename = 'download.txt';
-    var blob = new Blob([JSON.stringify(fileJson)], {type: 'text/plain'});
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, filename);
-    } else {
-      var e:any = document.createEvent('MouseEvents'),
-        a = document.createElement('a');
-      a.download = filename;
-      a.href = window.URL.createObjectURL(blob);
-      a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
-      e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-      a.dispatchEvent(e);
-    }
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+
   }
 }
